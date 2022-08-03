@@ -2,6 +2,7 @@ package be.digitalcity.springrest.service;
 
 import be.digitalcity.springrest.model.entity.Enfant;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface CrudService<T, TID> {
@@ -19,4 +20,5 @@ public interface CrudService<T, TID> {
     // DELETE
     T delete(TID id);
 
+    List<T> getAllById(Collection<TID> tid);
 }

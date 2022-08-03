@@ -6,6 +6,7 @@ import be.digitalcity.springrest.service.TuteurService;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -48,7 +49,11 @@ public class TuteurServiceImpl implements TuteurService {
 
     @Override
     public List<Tuteur> getAll() {
-        return  repository.findAll();
+        return null;
+    }
+
+    public List<Tuteur> get(Collection<Long> listId){
+        return repository.findAllById(listId);
     }
 
     @Override
@@ -57,5 +62,11 @@ public class TuteurServiceImpl implements TuteurService {
         repository.delete(tuteur);
         tuteur.setId(0L);
         return tuteur;
+    }
+
+    @Override
+    public List<Tuteur> getAllById(Collection<Long> tid) {
+        return repository.findAllById(tid);
+
     }
 }

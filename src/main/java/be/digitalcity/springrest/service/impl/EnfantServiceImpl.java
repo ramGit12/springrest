@@ -6,6 +6,7 @@ import be.digitalcity.springrest.service.EnfantService;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -61,4 +62,11 @@ public class EnfantServiceImpl implements EnfantService {
         enfant.setId(0L);
         return enfant;
     }
+
+    @Override
+    public List<Enfant> getAllById(Collection<Long> tid) {
+        return repository.findAllById(tid);
+
+    }
+
 }

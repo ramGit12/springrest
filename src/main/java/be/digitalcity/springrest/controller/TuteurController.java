@@ -6,6 +6,7 @@ import be.digitalcity.springrest.model.dto.TuteurDTO;
 import be.digitalcity.springrest.model.entity.Tuteur;
 import be.digitalcity.springrest.model.forms.TuteurInsertForm;
 import be.digitalcity.springrest.model.forms.TuteurUpdateForm;
+import be.digitalcity.springrest.service.EnfantService;
 import be.digitalcity.springrest.service.TuteurService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,10 +19,13 @@ public class TuteurController {
     private final TuteurService service;
     private final TuteurMapper mapper;
 
+    private final EnfantService enfantService;
 
-    public TuteurController(TuteurService service, TuteurMapper mapper) {
+
+    public TuteurController(TuteurService service, TuteurMapper mapper, EnfantService enfantService) {
         this.service = service;
         this.mapper = mapper;
+        this.enfantService = enfantService;
     }
 
     @GetMapping("{id}")
@@ -40,8 +44,8 @@ public class TuteurController {
     @PostMapping
     public TuteurDTO insert(@RequestBody TuteurInsertForm form){
         Tuteur entity = mapper.toEntity(form);
-        entity = service.create( entity );
-        return mapper.toDto( entity );
+        entity.setEnfants(enfantService.getAllById(form.getEnfantsId()));
+        return mapper.toDto( service.create( entity ) );
     }
 
     @DeleteMapping("/{id}")

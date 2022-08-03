@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import java.util.Collection;
 import java.util.Set;
 
 @Entity
@@ -23,6 +24,6 @@ public class Tuteur extends Personne {
     private String adresse;
 
     @ManyToMany(mappedBy = "tuteurs")
-    private Set<Enfant> enfants;
+    private Collection<Enfant> enfants;
 
 }
