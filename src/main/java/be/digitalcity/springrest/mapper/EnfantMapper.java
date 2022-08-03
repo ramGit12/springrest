@@ -2,9 +2,14 @@ package be.digitalcity.springrest.mapper;
 
 import be.digitalcity.springrest.model.dto.EnfantDTO;
 import be.digitalcity.springrest.model.entity.Enfant;
+import be.digitalcity.springrest.model.entity.Personne;
 import be.digitalcity.springrest.model.forms.EnfantInsertForm;
 import be.digitalcity.springrest.model.forms.EnfantUpdateForm;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 public class EnfantMapper {
@@ -13,7 +18,7 @@ public class EnfantMapper {
 
         if( entity == null )
             return null;
-
+        Set<Long> list = entity.getTuteurs().stream().map(Personne::getId).collect(Collectors.toSet());
         return EnfantDTO.builder()
                 .id( entity.getId() )
                 .prenom( entity.getPrenom() )
@@ -21,7 +26,7 @@ public class EnfantMapper {
                 .dateNaiss( entity.getDateNaissance() )
                 .allergies( entity.getAllergies() )
                 .proprete( entity.isPropre() ? "propre" : "non-propre" ) // propre / non-propre
-//                .tuteurs()
+                .tuteurs( list)
                 .build();
 
     }

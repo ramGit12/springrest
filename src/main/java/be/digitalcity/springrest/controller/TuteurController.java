@@ -33,7 +33,7 @@ public class TuteurController {
         return mapper.toDto(service.getOne(id));
     }
 
-    @GetMapping({"", "/all"})
+    @GetMapping({ "/all"})
     public List<TuteurDTO> getAll(){
         return service.getAll().stream()
                 .map( mapper::toDto )
@@ -44,7 +44,7 @@ public class TuteurController {
     @PostMapping
     public TuteurDTO insert(@RequestBody TuteurInsertForm form){
         Tuteur entity = mapper.toEntity(form);
-        entity.setEnfants(enfantService.getAllById(form.getEnfantsId()));
+       // entity.setEnfants(enfantService.getAllById(form.getEnfantsId()));
         return mapper.toDto( service.create( entity ) );
     }
 

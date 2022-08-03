@@ -49,7 +49,7 @@ public class TuteurServiceImpl implements TuteurService {
 
     @Override
     public List<Tuteur> getAll() {
-        return null;
+        return repository.findAll();
     }
 
     public List<Tuteur> get(Collection<Long> listId){

@@ -17,7 +17,7 @@ public class EnfantDTO {
     private LocalDate dateNaiss;
     private String proprete;
     private List<String> allergies;
-    private Set<TuteurDTO> tuteurs;
+    private Set<Long> tuteurs;
 
 
 }
